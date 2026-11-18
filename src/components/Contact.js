@@ -5,8 +5,12 @@ import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion";
 import { trackContactSubmit, trackGithubClick, trackLinkedinClick } from "../lib/analytics";
 import { profile } from "../data/profile";
+import { translations } from "../data/translations";
+import { useLanguage } from "../context/LanguageContext";
 
 const Contact = () => {
+  const { language } = useLanguage();
+  const content = translations[language];
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -39,7 +43,7 @@ const Contact = () => {
           name: formData.name,
           email: formData.email,
           message: formData.message,
-          subject: `Portfolio Inquiry from ${formData.name}`,
+          subject: `${content.contact.subjectPrefix}${formData.name}`,
           from_name: formData.name,
           botcheck: formData.botcheck,
         }),
@@ -51,7 +55,7 @@ const Contact = () => {
         trackContactSubmit(formData.email);
 
         toast.success(
-          "Thank you for your message! I will get back to you soon.",
+          content.contact.success,
           {
             position: "top-right",
             autoClose: 5000,
@@ -68,20 +72,18 @@ const Contact = () => {
           botcheck: "",
         });
       } else {
-        throw new Error(data.message || "Failed to submit form");
+        throw new Error(data.message || content.contact.error);
       }
     } catch (error) {
-      toast.error(
-        error.message || "Sorry, there was an error sending your message. Please try again later.",
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        }
-      );
+      console.error("Contact form submission failed:", error);
+      toast.error(content.contact.error, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -99,13 +101,13 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
         >
           <span className="text-[#5C4033] dark:text-[#E6C594] text-xs font-bold uppercase tracking-widest block mb-2 font-sans">
-            Let's Collaborate
+            {content.contact.eyebrow}
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl font-normal tracking-tight text-[#2B231D] dark:text-[#F4ECE3]">
-            Get In Touch
+            {content.contact.title}
           </h2>
           <p className="text-[#332721] dark:text-[#D6C7B8] text-base mt-4 font-sans leading-relaxed">
-            Have a project in mind, an engineering query, or want to discuss full-stack & cloud architecture? Send a note below.
+            {content.contact.description}
           </p>
         </motion.div>
 
@@ -120,10 +122,10 @@ const Contact = () => {
           >
             <div>
               <h3 className="font-serif text-2xl font-semibold text-[#2B231D] dark:text-[#F4ECE3] mb-3">
-                Direct Channels
+                {content.contact.channelsTitle}
               </h3>
               <p className="text-[#332721] dark:text-[#D6C7B8] font-sans text-sm mb-8 leading-relaxed">
-                Reach out directly via email or connect across professional technical networks.
+                {content.contact.channelsDescription}
               </p>
 
               <div className="space-y-6">
@@ -135,7 +137,7 @@ const Contact = () => {
                     <FaEnvelope className="text-lg" />
                   </div>
                   <div>
-                    <span className="text-xs text-[#8C7A6B] dark:text-[#9E8E81] uppercase font-bold block tracking-wider font-sans">Email</span>
+                    <span className="text-xs text-[#8C7A6B] dark:text-[#9E8E81] uppercase font-bold block tracking-wider font-sans">{content.contact.email}</span>
                     <span className="text-sm font-semibold text-[#2B231D] dark:text-[#F4ECE3] font-sans">{profile.social.email}</span>
                   </div>
                 </a>
@@ -151,7 +153,7 @@ const Contact = () => {
                     <FaLinkedin className="text-lg" />
                   </div>
                   <div>
-                    <span className="text-xs text-[#8C7A6B] dark:text-[#9E8E81] uppercase font-bold block tracking-wider font-sans">LinkedIn</span>
+                    <span className="text-xs text-[#8C7A6B] dark:text-[#9E8E81] uppercase font-bold block tracking-wider font-sans">{content.contact.linkedin}</span>
                     <span className="text-sm font-semibold text-[#2B231D] dark:text-[#F4ECE3] font-sans">linkedin.com/in/hayate7777</span>
                   </div>
                 </a>
@@ -167,7 +169,7 @@ const Contact = () => {
                     <FaGithub className="text-lg" />
                   </div>
                   <div>
-                    <span className="text-xs text-[#8C7A6B] dark:text-[#9E8E81] uppercase font-bold block tracking-wider font-sans">GitHub</span>
+                    <span className="text-xs text-[#8C7A6B] dark:text-[#9E8E81] uppercase font-bold block tracking-wider font-sans">{content.contact.github}</span>
                     <span className="text-sm font-semibold text-[#2B231D] dark:text-[#F4ECE3] font-sans">{profile.social.github.replace("https://", "")}</span>
                   </div>
                 </a>
@@ -176,7 +178,7 @@ const Contact = () => {
 
             <div className="mt-8 pt-6 border-t border-[#E2D6C5]/70 dark:border-[#382E28]/70">
               <p className="text-xs text-[#8C7A6B] dark:text-[#9E8E81] font-sans italic">
-                Based in Noida, UP, India. Available for full-time opportunities and remote engineering work.
+                {content.contact.location(content.profile.location)}
               </p>
             </div>
           </motion.div>
@@ -204,7 +206,7 @@ const Contact = () => {
 
               <div>
                 <label htmlFor="name" className="block text-xs font-bold uppercase tracking-wider text-[#2B231D] dark:text-[#F4ECE3] mb-2 font-sans">
-                  Your Name
+                  {content.contact.name}
                 </label>
                 <input
                   type="text"
@@ -214,13 +216,13 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  placeholder="e.g. Jane Doe"
+                  placeholder={content.contact.namePlaceholder}
                 />
               </div>
 
               <div>
                 <label htmlFor="email" className="block text-xs font-bold uppercase tracking-wider text-[#2B231D] dark:text-[#F4ECE3] mb-2 font-sans">
-                  Your Email Address
+                  {content.contact.emailAddress}
                 </label>
                 <input
                   type="email"
@@ -230,13 +232,13 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  placeholder="e.g. jane@example.com"
+                  placeholder={content.contact.emailPlaceholder}
                 />
               </div>
 
               <div>
                 <label htmlFor="message" className="block text-xs font-bold uppercase tracking-wider text-[#2B231D] dark:text-[#F4ECE3] mb-2 font-sans">
-                  Message
+                  {content.contact.message}
                 </label>
                 <textarea
                   id="message"
@@ -245,7 +247,7 @@ const Contact = () => {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  placeholder="Share details about your project or inquiry..."
+                  placeholder={content.contact.messagePlaceholder}
                   rows="5"
                 ></textarea>
               </div>
@@ -256,11 +258,11 @@ const Contact = () => {
                 className="w-full bg-[#5C4033] text-white hover:bg-[#4A3328] dark:bg-[#E6C594] dark:text-[#2B231D] dark:hover:bg-[#F5D6A0] px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest font-sans inline-flex items-center justify-center gap-2 shadow-md transition-all duration-200 disabled:opacity-50"
               >
                 {isSubmitting ? (
-                  <span>Sending Message...</span>
+                  <span>{content.contact.sending}</span>
                 ) : (
                   <>
                     <FaPaperPlane className="text-xs" />
-                    <span>Send Message</span>
+                    <span>{content.contact.send}</span>
                   </>
                 )}
               </button>

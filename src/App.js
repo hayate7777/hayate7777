@@ -7,6 +7,8 @@ import Footer from "./components/Footer";
 import { SkeletonGrid } from "./components/ui/skeleton";
 import { trackPageView, initClarity } from "./lib/analytics";
 import { profile } from "./data/profile";
+import { translations } from "./data/translations";
+import { LanguageProvider, useLanguage } from "./context/LanguageContext";
 import "./index.css";
 const Experience = React.lazy(() => import("./components/Experience"));
 const Projects = React.lazy(() => import("./components/Projects"));
@@ -14,44 +16,48 @@ const Skills = React.lazy(() => import("./components/Skills"));
 const Education = React.lazy(() => import("./components/Education"));
 const Contact = React.lazy(() => import("./components/Contact"));
 
-function App() {
+function AppContent() {
+  const { language } = useLanguage();
+  const content = translations[language];
+
   useEffect(() => {
     initClarity();
     trackPageView();
   }, []);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Helmet>
-        <title>{profile.name} — {profile.titles[0]}</title>
+        <title>{profile.name} — {content.profile.titles[0]}</title>
         <meta
           name="description"
-          content={profile.bio[0]}
+          content={content.profile.bio[0]}
         />
         <meta
           name="keywords"
-          content="Hayate Yamamoto, Senior Full Stack Engineer, Software Architect, React, TypeScript, Node.js, Laravel, AWS, Docker, CI/CD, Microservices"
+          content={content.meta.keywords}
         />
         <meta name="author" content={profile.name} />
         <meta
           property="og:title"
-          content={`${profile.name} — ${profile.titles[0]}`}
+          content={`${profile.name} — ${content.profile.titles[0]}`}
         />
         <meta
           property="og:description"
-          content={profile.bio[0]}
+          content={content.profile.bio[0]}
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={profile.social.website} />
-        <meta property="og:site_name" content={`${profile.name} Portfolio`} />
-        <meta property="og:locale" content="en_US" />
+        <meta property="og:site_name" content={content.meta.siteName} />
+        <meta property="og:locale" content={language === "ja" ? "ja_JP" : "en_US"} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content={`${profile.name} — ${profile.titles[0]}`}
+          content={`${profile.name} — ${content.profile.titles[0]}`}
         />
         <meta
           name="twitter:description"
-          content={profile.bio[0]}
+          content={content.profile.bio[0]}
         />
         <link rel="canonical" href={profile.social.website} />
         <script type="application/ld+json">{`
@@ -65,9 +71,9 @@ function App() {
               "${profile.social.github}",
               "${profile.social.linkedin}"
             ],
-            "jobTitle": "${profile.titles[0]}",
+            "jobTitle": "${content.profile.titles[0]}",
             "knowsAbout": ["React", "TypeScript", "Node.js", "Laravel", "AWS", "Docker", "CI/CD", "Microservices"],
-            "description": "${profile.bio[0]}",
+            "description": "${content.profile.bio[0]}",
             "email": "${profile.social.email}"
           }
         `}</script>
@@ -75,9 +81,9 @@ function App() {
           {
             "@context": "https://schema.org",
             "@type": "WebSite",
-            "name": "${profile.name} Portfolio",
+            "name": "${content.meta.siteName}",
             "url": "${profile.social.website}",
-            "description": "${profile.bio[0]}"
+            "description": "${content.profile.bio[0]}"
           }
         `}</script>
         <meta
@@ -103,6 +109,14 @@ function App() {
       </div>
       <Footer />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <LanguageProvider>
+      <AppContent />
+    </LanguageProvider>
   );
 }
 

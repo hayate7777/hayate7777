@@ -2,8 +2,13 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaGraduationCap } from 'react-icons/fa';
 import { education } from '../data/education';
+import { translations } from '../data/translations';
+import { useLanguage } from '../context/LanguageContext';
 
 const Education = () => {
+  const { language } = useLanguage();
+  const content = translations[language];
+
   return (
     <section id="education" className="py-20 sm:py-24 bg-[#F7F0E6] dark:bg-[#1A1412] text-[#2B231D] dark:text-[#F4ECE3] transition-colors duration-300">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -15,15 +20,18 @@ const Education = () => {
           transition={{ duration: 0.6 }}
         >
           <span className="text-[#5C4033] dark:text-[#E6C594] text-xs font-bold uppercase tracking-widest block mb-2 font-sans">
-            Academic Background
+            {content.education.eyebrow}
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl font-normal tracking-tight text-[#2B231D] dark:text-[#F4ECE3]">
-            Education & Qualifications
+            {content.education.title}
           </h2>
         </motion.div>
 
         <div className="space-y-6">
-          {education.map((edu, index) => (
+          {education.map((edu, index) => {
+            const localizedEducation = content.education.items[index];
+
+            return (
             <motion.div 
               key={index}
               className="bg-[#EFE6D8] dark:bg-[#251E1A] border border-[#E2D6C5] dark:border-[#382E28] rounded-3xl p-6 sm:p-8 shadow-sm transition-all duration-300 hover:shadow-md relative overflow-hidden"
@@ -39,35 +47,36 @@ const Education = () => {
                   </div>
                   <div>
                     <h3 className="font-serif text-xl sm:text-2xl font-semibold text-[#2B231D] dark:text-[#F4ECE3]">
-                      {edu.degree}
+                      {localizedEducation.degree}
                     </h3>
                     <p className="text-[#332721] dark:text-[#D6C7B8] font-sans text-sm font-medium mt-1">
-                      {edu.institution}
+                      {localizedEducation.institution}
                     </p>
                   </div>
                 </div>
                 
                 <span className="inline-self-start sm:inline-self-auto bg-[#E7DDCD] dark:bg-[#342A24] text-[#2B231D] dark:text-[#E8D4C8] text-xs font-semibold px-4 py-1.5 rounded-full font-sans whitespace-nowrap border border-[#E2D6C5] dark:border-[#42352E]">
-                  {edu.period}
+                  {localizedEducation.period}
                 </span>
               </div>
 
               {(edu.details || edu.highlights) && (
                 <div className="mt-4 pt-4 border-t border-[#E2D6C5]/70 dark:border-[#382E28]/70 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs sm:text-sm font-sans">
-                  {edu.details && (
+                  {localizedEducation.details && (
                     <span className="font-bold text-[#5C4033] dark:text-[#E6C594]">
-                      {edu.details}
+                      {localizedEducation.details}
                     </span>
                   )}
-                  {edu.highlights && (
+                  {localizedEducation.highlights && (
                     <span className="text-[#8C7A6B] dark:text-[#9E8E81]">
-                      {edu.highlights}
+                      {localizedEducation.highlights}
                     </span>
                   )}
                 </div>
               )}
             </motion.div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

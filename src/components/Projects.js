@@ -2,9 +2,19 @@ import React, { useState } from 'react';
 import { projects } from '../data/projects';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt, FaTimes } from 'react-icons/fa';
+import { translations } from '../data/translations';
+import { useLanguage } from '../context/LanguageContext';
 
 const Projects = () => {
-  const [selectedProj, setSelectedProj] = useState(null);
+  const [selectedProjIndex, setSelectedProjIndex] = useState(null);
+  const { language } = useLanguage();
+  const content = translations[language];
+  const selectedProj = selectedProjIndex === null ? null : projects[selectedProjIndex];
+  const selectedProjectContent = selectedProjIndex === null
+    ? null
+    : language === 'ja'
+      ? content.projects.items[selectedProjIndex]
+      : selectedProj;
 
   return (
     <section id="projects" className="py-20 sm:py-24 bg-[#F7F0E6] dark:bg-[#1A1412] text-[#2B231D] dark:text-[#F4ECE3] transition-colors duration-300">
@@ -17,19 +27,22 @@ const Projects = () => {
           transition={{ duration: 0.6 }}
         >
           <span className="text-[#5C4033] dark:text-[#E6C594] text-xs font-bold uppercase tracking-widest block mb-2 font-sans">
-            Selected Work
+            {content.projects.eyebrow}
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl font-normal tracking-tight text-[#2B231D] dark:text-[#F4ECE3]">
-            Featured Engineering Projects
+            {content.projects.title}
           </h2>
           <p className="text-[#332721] dark:text-[#D6C7B8] text-base mt-4 font-sans leading-relaxed">
-            Full-stack Web Applications, Spring AI integrations, Microservices, and LLM Tokenizers crafted with focus.
+            {content.projects.description}
           </p>
         </motion.div>
 
         {/* Project Card Grid */}
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((proj, index) => (
+          {projects.map((proj, index) => {
+            const localizedProject = language === 'ja' ? content.projects.items[index] : proj;
+
+            return (
             <motion.div 
               key={proj.id || index}
               className="bg-[#EFE6D8] dark:bg-[#251E1A] border border-[#E2D6C5] dark:border-[#382E28] rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between"
@@ -44,7 +57,7 @@ const Projects = () => {
                   <div className="relative overflow-hidden h-48 border-b border-[#E2D6C5] dark:border-[#382E28] bg-[#E7DDCD] dark:bg-[#1A1412]">
                     <img 
                       src={proj.image} 
-                      alt={proj.title} 
+                      alt={localizedProject.title}
                       className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                       loading="lazy"
                     />
@@ -53,11 +66,11 @@ const Projects = () => {
 
                 <div className="p-6 sm:p-7">
                   <h3 className="font-serif text-xl sm:text-2xl font-semibold text-[#2B231D] dark:text-[#F4ECE3] mb-3">
-                    {proj.title}
+                    {localizedProject.title}
                   </h3>
 
                   <p className="text-xs sm:text-sm text-[#332721] dark:text-[#D6C7B8] font-sans leading-relaxed mb-6 line-clamp-2">
-                    {proj.description || (proj.bullets && proj.bullets[0])}
+                    {localizedProject.description}
                   </p>
 
                   {/* Technology Pills */}
@@ -82,10 +95,10 @@ const Projects = () => {
               {/* Card Action Links Footer */}
               <div className="px-6 pb-6 pt-0 flex items-center justify-between gap-3 border-t border-[#E2D6C5]/60 dark:border-[#382E28]/60 pt-4 mt-auto">
                 <button 
-                  onClick={() => setSelectedProj(proj)}
+                  onClick={() => setSelectedProjIndex(index)}
                   className="text-xs font-bold text-[#2B231D] dark:text-[#F4ECE3] hover:text-[#5C4033] dark:hover:text-[#E6C594] transition-colors font-sans"
                 >
-                  View Details &rarr;
+                  {content.projects.viewDetails} &rarr;
                 </button>
 
                 <div className="flex items-center gap-2">
@@ -95,7 +108,7 @@ const Projects = () => {
                       target="_blank" 
                       rel="noopener noreferrer" 
                       className="p-2.5 rounded-full bg-[#E7DDCD] dark:bg-[#342A24] text-[#2B231D] dark:text-[#F4ECE3] hover:bg-[#B8AA94] dark:hover:bg-[#4D3F38] transition-colors text-sm"
-                      aria-label="GitHub Repository"
+                      aria-label={content.projects.repository}
                     >
                       <FaGithub />
                     </a>
@@ -107,13 +120,14 @@ const Projects = () => {
                       rel="noopener noreferrer" 
                       className="bg-[#5C4033] dark:bg-[#E6C594] text-white dark:text-[#2B231D] hover:bg-[#4A3328] dark:hover:bg-[#F5D6A0] px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider font-sans inline-flex items-center gap-1.5 shadow-sm"
                     >
-                      Demo <FaExternalLinkAlt className="text-[9px]" />
+                      {content.projects.demo} <FaExternalLinkAlt className="text-[9px]" />
                     </a>
                   )}
                 </div>
               </div>
             </motion.div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Modal View for Project Detail */}
@@ -124,7 +138,7 @@ const Projects = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setSelectedProj(null)}
+              onClick={() => setSelectedProjIndex(null)}
             >
               <motion.div 
                 className="bg-[#F7F0E6] dark:bg-[#201A17] border border-[#E2D6C5] dark:border-[#382E28] text-[#2B231D] dark:text-[#F4ECE3] rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto"
@@ -134,23 +148,23 @@ const Projects = () => {
                 onClick={(e) => e.stopPropagation()}
               >
                 <button 
-                  onClick={() => setSelectedProj(null)}
+                  onClick={() => setSelectedProjIndex(null)}
                   className="absolute top-6 right-6 p-2 rounded-full bg-[#E7DDCD] dark:bg-[#342A24] text-[#2B231D] dark:text-[#F4ECE3] hover:bg-[#B8AA94] transition-colors"
-                  aria-label="Close dialog"
+                  aria-label={content.projects.closeDialog}
                 >
                   <FaTimes />
                 </button>
 
                 <span className="text-[#5C4033] dark:text-[#E6C594] text-xs font-bold uppercase tracking-wider block mb-1 font-sans">
-                  Project Insight
+                  {content.projects.insight}
                 </span>
 
                 <h3 className="font-serif text-2xl sm:text-3xl font-semibold mb-4 pr-8">
-                  {selectedProj.title}
+                  {selectedProjectContent.title}
                 </h3>
 
                 <p className="text-sm text-[#332721] dark:text-[#D6C7B8] font-sans leading-relaxed mb-6">
-                  {selectedProj.description}
+                  {selectedProjectContent.description}
                 </p>
 
                 {selectedProj.gallery?.length > 0 && (
@@ -159,7 +173,7 @@ const Projects = () => {
                       <img
                         key={image}
                         src={image}
-                        alt={`${selectedProj.title} project detail ${index + 1}`}
+                        alt={`${content.projects.imageAlt(selectedProjectContent.title)} ${index + 1}`}
                         className="w-full aspect-[4/3] object-cover rounded-2xl border border-[#E2D6C5] dark:border-[#382E28]"
                         loading="lazy"
                       />
@@ -167,13 +181,13 @@ const Projects = () => {
                   </div>
                 )}
 
-                {(selectedProj.details || selectedProj.bullets) && (
+                {selectedProjectContent.details?.length > 0 && (
                   <div className="mb-6 space-y-2">
                     <h4 className="text-xs font-bold uppercase tracking-wider text-[#2B231D] dark:text-[#F4ECE3] font-sans">
-                      Key Highlights & Architecture:
+                      {content.projects.highlights}
                     </h4>
                     <ul className="space-y-1.5 text-xs text-[#332721] dark:text-[#D6C7B8] font-sans">
-                      {(selectedProj.details || selectedProj.bullets).map((detail, idx) => (
+                      {selectedProjectContent.details.map((detail, idx) => (
                         <li key={idx} className="flex items-start gap-2">
                           <span className="text-[#5C4033] dark:text-[#E6C594] font-bold">✓</span>
                           <span>{detail}</span>
@@ -186,7 +200,7 @@ const Projects = () => {
                 {selectedProj.technologies && (
                   <div className="mb-6">
                     <h4 className="text-xs font-bold uppercase tracking-wider text-[#2B231D] dark:text-[#F4ECE3] font-sans mb-3">
-                      Technologies & Stack:
+                      {content.projects.technologies}
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {selectedProj.technologies.map((tech, idx) => (
@@ -209,7 +223,7 @@ const Projects = () => {
                       target="_blank" 
                       rel="noopener noreferrer"
                     >
-                      <FaGithub /> Repository
+                      <FaGithub /> {content.projects.repository}
                     </a>
                   )}
                   {selectedProj.links?.frontend && (
@@ -219,7 +233,7 @@ const Projects = () => {
                       target="_blank" 
                       rel="noopener noreferrer"
                     >
-                      <FaGithub /> Frontend
+                      <FaGithub /> {content.projects.frontend}
                     </a>
                   )}
                   {selectedProj.links?.backend && (
@@ -229,7 +243,7 @@ const Projects = () => {
                       target="_blank" 
                       rel="noopener noreferrer"
                     >
-                      <FaGithub /> Backend
+                      <FaGithub /> {content.projects.backend}
                     </a>
                   )}
                   {selectedProj.links?.demo && (
@@ -239,7 +253,7 @@ const Projects = () => {
                       target="_blank" 
                       rel="noopener noreferrer"
                     >
-                      <FaExternalLinkAlt className="text-[10px]" /> Live Demo
+                      <FaExternalLinkAlt className="text-[10px]" /> {content.projects.liveDemo}
                     </a>
                   )}
                 </div>

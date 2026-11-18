@@ -22,6 +22,8 @@ import {
   SiOpenai,
   SiTensorflow,
 } from 'react-icons/si';
+import { translations } from '../data/translations';
+import { useLanguage } from '../context/LanguageContext';
 
 const skillIconOverrides = {
   'AI & Machine Learning': {
@@ -50,13 +52,15 @@ const skillIconOverrides = {
   },
 };
 
-const SkillIcon = ({ category, skill }) => {
+const SkillIcon = ({ category, skill, language }) => {
   const icon = skillIconOverrides[category]?.[skill.name];
+  const skillName = translations[language].skills.names[skill.name] || skill.name;
+  const iconLabel = language === 'ja' ? `${skillName}のアイコン` : `${skillName} icon`;
 
   if (icon) {
     const Icon = icon.component;
     return (
-      <div className="w-6 h-6 flex items-center justify-center shrink-0" aria-label={`${skill.name} icon`} role="img">
+      <div className="w-6 h-6 flex items-center justify-center shrink-0" aria-label={iconLabel} role="img">
         <Icon size={24} color={icon.color} strokeWidth={1.8} aria-hidden="true" />
       </div>
     );
@@ -70,7 +74,7 @@ const SkillIcon = ({ category, skill }) => {
     <div className="w-6 h-6 flex items-center justify-center shrink-0">
       <img
         src={skill.icon}
-        alt={skill.name}
+        alt={skillName}
         className="max-h-6 max-w-6 object-contain dark:brightness-110 transition-transform duration-200 hover:scale-110"
         loading="lazy"
       />
@@ -79,7 +83,13 @@ const SkillIcon = ({ category, skill }) => {
 };
 
 const Skills = () => {
-  const skillCategories = skills.map((c) => ({ title: c.title, skills: c.items }));
+  const { language } = useLanguage();
+  const content = translations[language];
+  const skillCategories = skills.map((category, index) => ({
+    originalTitle: category.title,
+    title: content.skills.categories[index],
+    skills: category.items,
+  }));
 
   return (
     <section id="skills" className="py-20 sm:py-24 bg-[#F7F0E6] dark:bg-[#1A1412] text-[#2B231D] dark:text-[#F4ECE3] transition-colors duration-300">
@@ -92,13 +102,13 @@ const Skills = () => {
           transition={{ duration: 0.6 }}
         >
           <span className="text-[#5C4033] dark:text-[#E6C594] text-xs font-bold uppercase tracking-widest block mb-2 font-sans">
-            Technical Stack
+            {content.skills.eyebrow}
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl font-normal tracking-tight text-[#2B231D] dark:text-[#F4ECE3]">
-            Crafts & Capabilities
+            {content.skills.title}
           </h2>
           <p className="text-[#332721] dark:text-[#D6C7B8] text-base mt-4 font-sans leading-relaxed">
-            Technologies, frameworks, and architecture patterns honed through building high-scale production systems.
+            {content.skills.description}
           </p>
         </motion.div>
 
@@ -126,9 +136,9 @@ const Skills = () => {
                     className="flex items-center gap-3 bg-[#F7F0E6] dark:bg-[#1A1412] border border-[#E2D6C5] dark:border-[#382E28] rounded-xl px-3.5 py-2.5 hover:bg-[#FBF6EE] dark:hover:bg-[#231B18] hover:border-[#B8AA94] dark:hover:border-[#4A3D36] transition-all duration-200"
                     whileHover={{ y: -2 }}
                   >
-                    <SkillIcon category={category.title} skill={skill} />
+                    <SkillIcon category={category.originalTitle} skill={skill} language={language} />
                     <span className="text-xs font-semibold text-[#2B231D] dark:text-[#F4ECE3] whitespace-nowrap font-sans">
-                      {skill.name}
+                      {content.skills.names[skill.name] || skill.name}
                     </span>
                   </motion.div>
                 ))}

@@ -2,9 +2,14 @@ import React from 'react';
 import { FaPaperPlane, FaFileAlt } from "react-icons/fa";
 import { ReactTyped } from 'react-typed';
 import { profile } from '../data/profile';
+import { translations } from '../data/translations';
+import { useLanguage } from '../context/LanguageContext';
 import { motion } from 'framer-motion';
 
 const About = () => {
+  const { language } = useLanguage();
+  const content = translations[language];
+
   return (
     <section id="about" className="py-16 sm:py-20 lg:py-24 bg-[#F7F0E6] dark:bg-[#1A1412] text-[#2B231D] dark:text-[#F4ECE3] relative overflow-hidden transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -19,7 +24,7 @@ const About = () => {
             transition={{ duration: 0.6 }}
           >
             <span className="inline-block text-[#5C4033] dark:text-[#E6C594] text-xs font-bold uppercase tracking-widest bg-[#E7DDCD] dark:bg-[#342A24] border border-[#E2D6C5] dark:border-[#42352E] px-3.5 py-1.5 rounded-full mb-4 font-sans">
-              {profile.titles[0]}
+              {content.profile.titles[0]}
             </span>
 
             <motion.h2 
@@ -30,7 +35,8 @@ const About = () => {
               transition={{ duration: 0.5, delay: 0.1 }}
             >
               <ReactTyped
-                strings={profile.titles}
+                key={language}
+                strings={content.profile.titles}
                 typeSpeed={50}
                 backSpeed={50}
                 backDelay={2000}
@@ -40,7 +46,7 @@ const About = () => {
             </motion.h2>
 
             <div className="space-y-4 mb-8">
-              {profile.bio.map((p, i) => (
+              {content.profile.bio.map((p, i) => (
                 <motion.p 
                   key={i} 
                   className="text-[#332721] dark:text-[#D6C7B8] text-base sm:text-lg font-sans leading-relaxed"
@@ -67,7 +73,7 @@ const About = () => {
                 className="bg-[#5C4033] text-white hover:bg-[#4A3328] dark:bg-[#E6C594] dark:text-[#2B231D] dark:hover:bg-[#F5D6A0] px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest font-sans inline-flex items-center gap-2 shadow-md transition-all duration-200"
               >
                 <FaPaperPlane className="text-xs" />
-                <span>Get In Touch</span>
+                <span>{content.about.getInTouch}</span>
               </a>
               <a
                 href="/Hayate_Yamamoto_CV.pdf"
@@ -76,7 +82,7 @@ const About = () => {
                 className="bg-[#5C4033] text-white hover:bg-[#4A3328] dark:bg-[#E6C594] dark:text-[#2B231D] dark:hover:bg-[#F5D6A0] px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest font-sans inline-flex items-center gap-2 shadow-md transition-all duration-200"
               >
                 <FaFileAlt className="text-xs" />
-                <span>View CV</span>
+                <span>{content.about.viewCv}</span>
               </a>
             </motion.div>
           </motion.div>
@@ -93,7 +99,7 @@ const About = () => {
             <div className="bg-[#EFE6D8] dark:bg-[#251E1A] border border-[#E2D6C5] dark:border-[#382E28] rounded-3xl p-4 shadow-sm relative group w-full max-w-lg transition-colors duration-300">
               <img
                 src={profile.image}
-                alt={`${profile.name} working at a computer`}
+                alt={content.profile.imageAlt}
                 className="w-full h-auto rounded-2xl border border-[#E2D6C5] dark:border-[#382E28] object-cover"
                 loading="lazy"
               />
@@ -101,7 +107,7 @@ const About = () => {
               {/* Quick Info Tag inside card */}
               <div className="mt-4 pt-3 border-t border-[#E2D6C5]/70 dark:border-[#382E28]/70 text-center">
                 <p className="text-xs text-[#8C7A6B] dark:text-[#9E8E81] font-sans font-medium">
-                  {profile.location} · {profile.workMode}
+                  {content.profile.location} · {content.profile.workMode}
                 </p>
               </div>
             </div>
