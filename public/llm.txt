@@ -1,0 +1,28 @@
+# Hayate Yamamoto — Senior Full Stack Engineer
+
+## Profile
+- **Name:** Hayate Yamamoto
+- **Title:** Senior Full Stack Engineer; Software Architect
+- **Location:** Shenzhen, China
+- **Work mode:** Remote
+- **Website:** https://kobayashi-takumi.app
+- **Email:** hayate7777@outlook.com
+- **LinkedIn:** https://www.linkedin.com/in/hayate7777
+- **GitHub:** https://github.com/takumi96215
+
+## Summary
+Senior full-stack engineer with 8+ years of experience designing, building, and scaling enterprise web applications across fintech, healthcare, education, and SaaS. Experienced with React, TypeScript, Node.js, Laravel, AWS, Docker, CI/CD, and microservices. Leads distributed teams, mentors engineers, facilitates architecture reviews, and collaborates with cross-functional stakeholders. Native Japanese speaker with business-level English.
+
+## Experience
+- **Senior Software Engineer, Freelance** — June 2023 to present. Leads technical planning, architecture, modernization, delivery, and distributed engineering teams.
+- **Full Stack Developer, Shinsei Corporation Co., Ltd.** — April 2017 to May 2023. Built frontend and backend features for overseas web application projects and supported AWS deployments.
+
+## Education
+Computer Applications Technology, Guangdong Xin'an Vocational and Technical College (2014–2017).
+
+## Featured work
+- **AI & Biometric Authentication Platform:** React, Next.js, TypeScript, Node.js, NestJS, Python, PostgreSQL, MongoDB, AWS.
+- **Care & Medical IoT Monitoring System:** React, TypeScript, Node.js, Express, WebSocket, MongoDB, PostgreSQL, AWS.
+- **AR Smart Glasses Platform:** React, Next.js, TypeScript, Node.js, NestJS, WebSocket, PostgreSQL, MongoDB, AWS.
+- **Healthcare & Sleep Data Analytics Platform:** React, Next.js, TypeScript, Node.js, Python, PostgreSQL, MongoDB, Redis, D3.js.
+- **Environmental & Energy Management Platform:** React, Next.js, TypeScript, Node.js, Express, Python, PostgreSQL, MongoDB, Redis, D3.js, AWS.

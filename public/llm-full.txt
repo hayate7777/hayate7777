@@ -1,0 +1,57 @@
+# Hayate Yamamoto — Full Stack Engineering Profile
+
+## Profile
+- **Name:** Hayate Yamamoto
+- **Titles:** Senior Full Stack Engineer; Software Architect; Senior Software Engineer
+- **Location:** Shenzhen, China
+- **Work mode:** Remote
+- **Website:** https://kobayashi-takumi.app
+- **Email:** hayate7777@outlook.com
+- **LinkedIn:** https://www.linkedin.com/in/hayate7777
+- **GitHub:** https://github.com/takumi96215
+
+## Summary
+Senior full-stack engineer with 8+ years of experience designing, building, and scaling enterprise web applications across fintech, healthcare, education, and SaaS. Experienced with React, TypeScript, Node.js, Laravel, AWS, Docker, CI/CD, and microservices. Delivers projects end to end, from requirements and architecture through implementation and production deployment. Leads distributed teams, mentors engineers, facilitates architecture reviews, and works with cross-functional stakeholders. Native Japanese speaker with business-level English, experienced in collaborating with clients and teams across regions.
+
+## Experience
+### Senior Software Engineer — Freelance
+*June 2023 – Present*
+- Designs scalable software architectures aligned with client business requirements.
+- Leads technical planning and delivery from requirements through production deployment.
+- Modernizes legacy applications by decomposing them into reusable microservices.
+- Leads distributed engineering teams, mentors junior engineers, facilitates architecture reviews, and coordinates with cross-functional stakeholders.
+
+### Full Stack Developer — Shinsei Corporation Co., Ltd.
+*April 2017 – May 2023*
+- Contributed to overseas web application projects with international clients and distributed project teams.
+- Developed frontend and backend features using React, TypeScript, and Node.js.
+- Supported AWS environments, application deployment, operations, and ongoing improvements.
+- Coordinated with cross-functional teams to resolve technical issues and deliver reliable features.
+
+## Education
+Computer Applications Technology, Guangdong Xin'an Vocational and Technical College (2014–2017).
+
+## Technical skills
+- **Languages:** JavaScript, TypeScript, PHP, Python, Ruby, Java, Swift, SQL.
+- **Frontend:** React, Next.js, React Native, Vue.js, Angular, HTML5, CSS3, Material UI, Bootstrap, Ant Design, Redux, MobX, D3.js.
+- **Backend:** Node.js, Express, NestJS, Laravel, Django, Ruby on Rails, Flask, WebSocket, microservices.
+- **Databases:** PostgreSQL, MySQL, MongoDB, Firebase, Redis, vector databases.
+- **Cloud and delivery:** AWS, Docker, CircleCI, GitHub Actions, CI/CD, Git.
+- **Testing and engineering:** Jest, Cypress, RSpec, Jasmine, Karma, Mocha, Agile, Scrum, system design, code review, technical leadership.
+- **AI:** OpenAI, LLMs, RAG, LangChain, AI agents, TensorFlow.
+
+## Featured work
+### AI & Biometric Authentication Platform
+Web platform integrating AI and biometric devices, with user administration, authentication history, and access permissions. Built with React, Next.js, TypeScript, Node.js, NestJS, Python, PostgreSQL, MongoDB, and AWS.
+
+### Care & Medical IoT Monitoring System
+Web system managing user condition data collected from IoT sensors in care and medical settings. Built with React, TypeScript, Node.js, Express, WebSocket, MongoDB, PostgreSQL, and AWS.
+
+### AR Smart Glasses Platform
+Cloud web platform connecting AR smart glasses with device and user management and live connection status. Built with React, Next.js, TypeScript, Node.js, NestJS, WebSocket, PostgreSQL, MongoDB, and AWS.
+
+### Healthcare & Sleep Data Analytics Platform
+Web platform to manage and analyze sleep and health data collected from connected devices. Built with React, Next.js, TypeScript, Node.js, Python, PostgreSQL, MongoDB, Redis, and D3.js.
+
+### Environmental & Energy Management Platform
+Web platform for operational and electricity data collected from energy equipment. Built with React, Next.js, TypeScript, Node.js, Express, Python, PostgreSQL, MongoDB, Redis, D3.js, and AWS.

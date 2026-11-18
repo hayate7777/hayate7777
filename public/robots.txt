@@ -1,0 +1,14 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /llm.txt
+Allow: /llm-full.txt
+Disallow: /static/js/*.map
+Disallow: /static/css/*.map
+
+# Sitemap & LLM text files
+Sitemap: https://kobayashi-takumi.app/sitemap.xml
+# LLM Profile: https://kobayashi-takumi.app/llms.txt
+
