@@ -62,7 +62,11 @@ export const translations = {
     education: {
       eyebrow: "Academic Background",
       title: "Education & Qualifications",
-      items: education,
+      items: education.map((item) => ({
+        ...item,
+        degree: item.institution,
+        institution: item.degree,
+      })),
     },
     contact: {
       eyebrow: "Let's Collaborate",
@@ -268,7 +272,8 @@ export const translations = {
       items: [
         {
           ...education[0],
-          degree: "コンピューターアプリケーション技術",
+          degree: "広東新安職業技術学院",
+          institution: "コンピューター応用技術",
           period: "2014年〜2017年",
         },
       ],

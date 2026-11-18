@@ -34,6 +34,8 @@ test('switches the full portfolio between English and Japanese', async () => {
   expect(screen.getByRole('heading', { name: '開発プロジェクト' })).toBeInTheDocument();
   expect(screen.getByText('プログラミング言語')).toBeInTheDocument();
   expect(screen.getByRole('heading', { name: '学歴・資格' })).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: '広東新安職業技術学院' })).toBeInTheDocument();
+  expect(screen.getByText('コンピューター応用技術')).toBeInTheDocument();
   expect(screen.getByText('AI・生体認証プラットフォーム')).toBeInTheDocument();
   expect(document.documentElement.lang).toBe('ja');
 
@@ -44,5 +46,7 @@ test('switches the full portfolio between English and Japanese', async () => {
   fireEvent.click(screen.getByRole('button', { name: 'Switch to English' }));
 
   expect(await screen.findByLabelText('Your Name')).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: "Guangdong Xin'an Vocational and Technical College" })).toBeInTheDocument();
+  expect(screen.getByText('Computer Applications Technology')).toBeInTheDocument();
   expect(document.documentElement.lang).toBe('en');
 });
