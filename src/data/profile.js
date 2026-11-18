@@ -20,7 +20,7 @@ export const profile = {
     email: "hayate7777@outlook.com",
     linkedin: "https://www.linkedin.com/in/hayate7777",
     phone: "0883-88-2219",
-    github: "https://github.com/takumi96215",
+    github: "https://github.com/hayate7777",
     website: "https://kobayashi-takumi.app",
   },
 };
