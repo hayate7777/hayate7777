@@ -1,37 +1,38 @@
-# Hayate Yamamoto — Portfolio
+# Hayate Yamamoto
 
-A personal portfolio built with React to showcase experience, projects, and skills.
+### Senior Full-Stack Engineer · Software Architect
 
-## Features
+I design and deliver scalable web products, from system architecture and APIs to polished user experiences and production deployment. Over 8 years of experience across fintech, healthcare, education, and SaaS, partnering with international teams and leading projects from discovery through delivery.
 
-- Responsive design optimized for all devices
-- Interactive UI with smooth scrolling
-- Project showcase, skills, experience, and education sections
-- Contact form
-- GitHub Actions deployment to GitHub Pages
+**Shenzhen, China · Available for remote work**
 
-## Technologies
+[Portfolio](https://kobayashi-takumi.app) · [LinkedIn](https://www.linkedin.com/in/hayate7777) · [Email](mailto:hayate7777@outlook.com) · [GitHub](https://github.com/hayate7777)
 
-- React, CSS, and JavaScript
-- GitHub Actions and GitHub Pages
+## What I Do
 
-## Local development
+- Architect and build end-to-end web applications and distributed services.
+- Develop maintainable frontend and backend systems with a focus on reliability and scale.
+- Modernize legacy platforms and support cloud infrastructure, CI/CD, and production releases.
+- Lead distributed teams, mentor engineers, and collaborate across product and business functions.
 
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/hayate7777/hayate7777.git
-   cd hayate7777
-   ```
-2. Install dependencies:
-   ```sh
-   npm install
-   ```
-3. Start the development server:
-   ```sh
-   npm start
-   ```
-4. Open http://localhost:3000.
+## Core Technologies
 
-## Deployment
+**Frontend:** React, TypeScript, Next.js
 
-The GitHub Actions workflow builds and deploys the site when changes are pushed to `main`.
+**Backend:** Node.js, NestJS, Laravel, Python
+
+**Cloud & Architecture:** AWS, Docker, microservices, CI/CD
+
+**Data:** PostgreSQL, MongoDB, Redis
+
+## Selected Work
+
+- **AI & Biometric Authentication** — Administration and authentication services integrated with biometric devices and AI systems.
+- **Care & Medical IoT** — Real-time monitoring dashboards, sensor data APIs, and alerting.
+- **AR Smart Glasses** — Cloud platform for device management and live connection status.
+- **Healthcare & Sleep Analytics** — Connected-device data management and visualization.
+- **Energy Management** — Operational dashboards and analysis for energy equipment and usage.
+
+## Background
+
+Based in Shenzhen, China, and experienced in collaborating with teams across regions. Native Japanese speaker with business-level English.
