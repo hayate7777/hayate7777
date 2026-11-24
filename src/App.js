@@ -47,7 +47,6 @@ function AppContent() {
           content={content.profile.bio[0]}
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={profile.social.website} />
         <meta property="og:site_name" content={content.meta.siteName} />
         <meta property="og:locale" content={language === "ja" ? "ja_JP" : "en_US"} />
         <meta name="twitter:card" content="summary_large_image" />
@@ -59,14 +58,11 @@ function AppContent() {
           name="twitter:description"
           content={content.profile.bio[0]}
         />
-        <link rel="canonical" href={profile.social.website} />
         <script type="application/ld+json">{`
           {
             "@context": "https://schema.org",
             "@type": "Person",
             "name": "${profile.name}",
-            "url": "${profile.social.website}",
-            "image": "${profile.social.website}/hayate-yamamoto.png",
             "sameAs": [
               "${profile.social.github}",
               "${profile.social.linkedin}"
@@ -82,7 +78,6 @@ function AppContent() {
             "@context": "https://schema.org",
             "@type": "WebSite",
             "name": "${content.meta.siteName}",
-            "url": "${profile.social.website}",
             "description": "${content.profile.bio[0]}"
           }
         `}</script>

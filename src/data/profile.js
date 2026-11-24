@@ -7,14 +7,14 @@ export const profile = {
     "Software Architect",
     "Senior Software Engineer",
   ],
-  location: "Shenzhen, China",
+  location: "Japan",
   workMode: "Remote",
   image: hayateYamamotoPhoto,
   bio: [
     "Senior full-stack engineer with 8+ years of experience designing, building, and scaling enterprise web applications across fintech, healthcare, education, and SaaS.",
     "Experienced with React, TypeScript, Node.js, Laravel, AWS, Docker, CI/CD, and microservices, delivering projects end to end from requirements and architecture through implementation and production deployment.",
     "Leads distributed teams, mentors engineers, facilitates architecture reviews, and partners with cross-functional stakeholders to deliver maintainable, scalable software.",
-    "Based in Shenzhen, China and available for remote work. Native Japanese speaker with business-level English, experienced in collaborating with clients and teams across regions.",
+    "Currently based in Japan and flexible for remote work. Native-level Japanese and business-level English, with extensive experience collaborating with multinational teams across countries and regions.",
   ],
   social: {
     email: "hayate7777@outlook.com",
