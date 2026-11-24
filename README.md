@@ -6,7 +6,7 @@ I design and deliver scalable web products, from system architecture and APIs to
 
 **Japan · Available for remote work**
 
-[Portfolio](https://kobayashi-takumi.app) · [LinkedIn](https://www.linkedin.com/in/hayate7777) · [Email](mailto:hayate7777@outlook.com) · [GitHub](https://github.com/hayate7777)
+[LinkedIn](https://www.linkedin.com/in/hayate7777) · [Email](mailto:hayate7777@outlook.com) · [GitHub](https://github.com/hayate7777)
 
 ## What I Do
 

@@ -5,7 +5,6 @@
 - **Title:** Senior Full Stack Engineer; Software Architect
 - **Location:** Shenzhen, China
 - **Work mode:** Remote
-- **Website:** https://kobayashi-takumi.app
 - **Email:** hayate7777@outlook.com
 - **LinkedIn:** https://www.linkedin.com/in/hayate7777
 - **GitHub:** https://github.com/takumi96215

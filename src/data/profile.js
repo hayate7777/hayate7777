@@ -21,6 +21,5 @@ export const profile = {
     linkedin: "https://www.linkedin.com/in/hayate7777",
     phone: "0883-88-2219",
     github: "https://github.com/hayate7777",
-    website: "https://kobayashi-takumi.app",
   },
 };
